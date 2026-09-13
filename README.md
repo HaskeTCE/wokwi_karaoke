@@ -14,7 +14,6 @@ Just open the wokwi_karaoke folder as a workspace and start simulating.
 Don't forget to install the dependencies as listed in the platform.ini file.
 
 # pin layout
-<img width="932" height="337" alt="image" src="https://github.com/user-attachments/assets/21d68bd0-f784-449d-b455-eaff3129a296" />
 
 | Component              | Pin Function     | ESP32 GPIO     | Notes                                               |
 |------------------------|------------------|----------------|-----------------------------------------------------|
@@ -33,3 +32,5 @@ Don't forget to install the dependencies as listed in the platform.ini file.
 | Buzzer                 | Signal           | 16             |                                                     |
 | Booth Button           | Signal           | 17             | Uses INPUT_PULLUP (connect to GND)                  |
 | Main Switch            | Signal           | 34             | Input-only pin. Uses external pull-down   resistor. |
+
+[md table maker](https://www.tablesgenerator.com/markdown_tables)
