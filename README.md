@@ -8,3 +8,5 @@ https://marketplace.visualstudio.com/items?itemName=Wokwi.wokwi-vscode
 https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide
 
 Just open the wokwi_karaoke folder as a workspace and start simulating.
+
+Don't forget to install the dependencies as listed in the platform.ini file.
