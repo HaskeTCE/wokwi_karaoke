@@ -15,3 +15,21 @@ Don't forget to install the dependencies as listed in the platform.ini file.
 
 # pin layout
 <img width="932" height="337" alt="image" src="https://github.com/user-attachments/assets/21d68bd0-f784-449d-b455-eaff3129a296" />
+
+| Component              | Pin Function     | ESP32 GPIO     | Notes                                               |
+|------------------------|------------------|----------------|-----------------------------------------------------|
+| LCD   Booth & Operator | RS               | 22             | Two Standard   Parallel LCDs                        |
+|                        | D4               | 5              |                                                     |
+|                        | D5               | 18             |                                                     |
+|                        | D6               | 19             |                                                     |
+|                        | D7               | 21             |                                                     |
+| LCD Operator           | EN               | 23             | Operator   display                                  |
+| LCD Booth              | EN               | 0              | Booth   display                                     |
+| Keypad                 | R1, R2, R3, R4   | 13, 12, 14, 27 | 4x4 keypad                                          |
+|                        | C1, C2, C3,   C4 | 26, 25, 33, 32 |                                                     |
+| Servo                  | PWM Signal       | 15             | 0° = Locked, 90° = Unlocked                         |
+| Red LED                | Anode (+)        | 2              | Requires   current-limiting resistors (220Ω)        |
+| Green LED              | Anode (+)        | 4              |                                                     |
+| Buzzer                 | Signal           | 16             |                                                     |
+| Booth Button           | Signal           | 17             | Uses INPUT_PULLUP (connect to GND)                  |
+| Main Switch            | Signal           | 34             | Input-only pin. Uses external pull-down   resistor. |
