@@ -22,8 +22,8 @@ Don't forget to install the dependencies as listed in the platform.ini file.
 | Keypad            | R1, R2, R3, R4 C1, C2, C3, C4 | 13, 12, 14, 27 26, 25, 33, 32 | Standard 4x4 membrane keypad.                                    |
 | Servo             | PWM Signal                    | 15                            | 0° = Locked, 90° = Unlocked                                      |
 | Ultrasonic Sensor | TRIG ECHO                     | 5 23                          | HC-SR04. Checks if the door is physically closed before locking. |
-| Red LED           | Anode (+)                     | 2                             | Requires current-limiting resistor (e.g., 220Ω)                  |
-| Green LED         | Anode (+)                     | 4                             | Requires current-limiting resistor (e.g., 220Ω)                  |
+| Red LED           | Anode (+)                     | 2                             | Requires current-limiting resistor (220Ω)                  |
+| Green LED         | Anode (+)                     | 4                             | Requires current-limiting resistor (220Ω)                  |
 | Buzzer            | Signal                        | 16                            | Active buzzer.                                                   |
 | Booth Button      | Signal                        | 17                            | Uses INPUT_PULLUP (connect to GND when pressed).                 |
 | Main Switch       | Signal                        | 34                            | Input-only pin. Uses external pull-down resistor.                |
