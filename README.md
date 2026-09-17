@@ -15,22 +15,17 @@ Don't forget to install the dependencies as listed in the platform.ini file.
 
 # pin layout
 
-| Component              | Pin Function     | ESP32 GPIO     | Notes                                               |
-|------------------------|------------------|----------------|-----------------------------------------------------|
-| LCD   Booth & Operator | RS               | 22             | Two Standard   Parallel LCDs                        |
-|                        | D4               | 5              |                                                     |
-|                        | D5               | 18             |                                                     |
-|                        | D6               | 19             |                                                     |
-|                        | D7               | 21             |                                                     |
-| LCD Operator           | EN               | 23             | Operator   display                                  |
-| LCD Booth              | EN               | 0              | Booth   display                                     |
-| Keypad                 | R1, R2, R3, R4   | 13, 12, 14, 27 | 4x4 keypad                                          |
-|                        | C1, C2, C3,   C4 | 26, 25, 33, 32 |                                                     |
-| Servo                  | PWM Signal       | 15             | 0° = Locked, 90° = Unlocked                         |
-| Red LED                | Anode (+)        | 2              | Requires   current-limiting resistors (220Ω)        |
-| Green LED              | Anode (+)        | 4              |                                                     |
-| Buzzer                 | Signal           | 16             |                                                     |
-| Booth Button           | Signal           | 17             | Uses INPUT_PULLUP (connect to GND)                  |
-| Main Switch            | Signal           | 34             | Input-only pin. Uses external pull-down   resistor. |
+| Component         | Pin Function                  | ESP32 GPIO                    | Notes                                                            |
+|-------------------|-------------------------------|-------------------------------|------------------------------------------------------------------|
+| LCD Operator      | SDA SCL                       | 21 22                         | I2C Display (PCF8574T module).                                   |
+| LCD Booth         | SDA SCL                       | 18 19                         | I2C Display (PCF8574T module).                                   |
+| Keypad            | R1, R2, R3, R4 C1, C2, C3, C4 | 13, 12, 14, 27 26, 25, 33, 32 | Standard 4x4 membrane keypad.                                    |
+| Servo             | PWM Signal                    | 15                            | 0° = Locked, 90° = Unlocked                                      |
+| Ultrasonic Sensor | TRIG ECHO                     | 5 23                          | HC-SR04. Checks if the door is physically closed before locking. |
+| Red LED           | Anode (+)                     | 2                             | Requires current-limiting resistor (e.g., 220Ω)                  |
+| Green LED         | Anode (+)                     | 4                             | Requires current-limiting resistor (e.g., 220Ω)                  |
+| Buzzer            | Signal                        | 16                            | Active buzzer.                                                   |
+| Booth Button      | Signal                        | 17                            | Uses INPUT_PULLUP (connect to GND when pressed).                 |
+| Main Switch       | Signal                        | 34                            | Input-only pin. Uses external pull-down resistor.                |
 
 [md table maker](https://www.tablesgenerator.com/markdown_tables)
