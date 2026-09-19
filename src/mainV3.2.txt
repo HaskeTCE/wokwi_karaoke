@@ -48,10 +48,6 @@ const int DOOR_CLOSED_THRESHOLD = 10; // cm - adjust based on closed door distan
 bool intendToLock = true;
 bool isCurrentlyLocked = false;
 
-// door close tracking
-unsigned long doorClosedStartTime = 0;
-bool doorIsClosed = false;
-
 // ==========================================
 // SYSTEM STATES & VARIABLES
 // ==========================================
@@ -495,8 +491,6 @@ void resetToInputHours()
     inputBuffer = "0";
     digitalWrite(RED_LED, HIGH);
     digitalWrite(GREEN_LED, LOW);
-    intendToLock = true; // Start intending to lock here
-    doorIsClosed = false; // Reset the closure timer just in case
     lcdNeedsUpdate = true;
 }
 
@@ -505,7 +499,7 @@ void triggerTimeUp()
     currentState = TIME_UP;
     digitalWrite(GREEN_LED, LOW);
     digitalWrite(RED_LED, HIGH);
-    intendToLock = false; // Keep the door unlocked
+    intendToLock = true;
     buzzerCycleStart = millis();
     lcdNeedsUpdate = true;
 }
@@ -544,38 +538,15 @@ float getDoorDistance()
 
 void manageDoorLock()
 {
-    static unsigned long lastPingTime = 0; // NEW: Tracks when we last pinged the sensor
-
     if (intendToLock)
     {
         // Only check sensor if door is currently unlocked
         if (!isCurrentlyLocked)
         {
-            // NEW: Only ping the sensor every 100ms to prevent echo overlap!
-            if (millis() - lastPingTime >= 100)
+            if (getDoorDistance() <= DOOR_CLOSED_THRESHOLD)
             {
-                lastPingTime = millis();
-                
-                if (getDoorDistance() <= DOOR_CLOSED_THRESHOLD)
-                {
-                    if (!doorIsClosed) 
-                    {
-                        // The door just closed this exact moment. Start the timer.
-                        doorIsClosed = true;
-                        doorClosedStartTime = millis();
-                    } 
-                    else if (millis() - doorClosedStartTime >= 5000) 
-                    {
-                        // The door has been continuously closed for 5000ms
-                        lockServo.write(0); // Physically lock it
-                        isCurrentlyLocked = true;
-                    }
-                }
-                else
-                {
-                    // The door is open, or was opened before the 5 seconds finished. Reset timer.
-                    doorIsClosed = false;
-                }
+                lockServo.write(0); // Physically lock it
+                isCurrentlyLocked = true;
             }
         }
     }
@@ -584,9 +555,8 @@ void manageDoorLock()
         // If intend to unlock, do it immediately
         if (isCurrentlyLocked)
         {
-            lockServo.write(90); // Physically unlock it
+            lockServo.write(90);
             isCurrentlyLocked = false;
         }
-        doorIsClosed = false; // Reset tracking state when unlocked
     }
 }
